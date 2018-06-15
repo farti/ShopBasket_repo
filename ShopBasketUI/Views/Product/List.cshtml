@@ -1,0 +1,18 @@
+﻿@using ShopBasketLibrary.Entities
+@model IEnumerable<Product>
+
+
+@{
+    ViewBag.Title = "Product List";
+}
+
+@foreach (var p in Model)
+{
+    <div>
+        <h3>@p.Name</h3>
+        @p.Description
+        <h4>@p.PriceNetto.ToString("c")</h4>
+    </div>
+
+}
+
