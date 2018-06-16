@@ -3,9 +3,12 @@
 @{
     ViewBag.Title = "Koszyk";
 }
+<style>
+    #basketTable td {vartical-align: middle;}
+</style>
 
 <h2>Koszyk</h2>
-<table class="table">
+<table id="basketTable" class="table">
     <thead>
         <tr>
             <th>Ilość</th>
@@ -22,6 +25,14 @@
                 <td class="text-left">@line.Product.Name</td>
                 <td class="text-right">@line.Product.PriceNetto.ToString("c")</td>
                 <td class="text-right">@((line.Quantity * line.Product.PriceNetto).ToString("c"))</td>
+                <td>
+                    @using (Html.BeginForm("RemoveFromBasket", "Basket"))
+                    {
+                        @Html.Hidden("Id", line.Product.Id)
+                        @Html.HiddenFor(x =>x.ReturnUrl)
+                    <input type="submit" class="btn btn-sm btn-warning" value="Usuń" />
+                    }
+                </td>
             </tr>
         }
     </tbody>

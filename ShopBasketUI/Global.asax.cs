@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using ShopBasketLibrary.Entities;
+using ShopBasketUI.Infrastructure.Binders;
 using System.Web.Mvc;
 using System.Web.Routing;
 
@@ -13,6 +11,7 @@ namespace ShopBasketUI
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            ModelBinders.Binders.Add(typeof(Basket), new BasketModelBinder());
         }
     }
 }

@@ -15,47 +15,37 @@ namespace ShopBasketUI.Controllers
             repository = repo;
         }
 
-        public ViewResult Index(string returnUrl)
+        public ViewResult Index(Basket basket, string returnUrl)
         {
             return View(new BasketIndexViewModel
             {
-                Basket = GetBasket(),
+                Basket = basket,
                 ReturnUrl = returnUrl
             });
         }
 
-        public RedirectToRouteResult AddToBasket(int Id, string returnUrl)
+        public RedirectToRouteResult AddToBasket(Basket basket, int Id, string returnUrl)
         {
             Product product = repository.Products
                 .FirstOrDefault(p => p.Id == Id);
 
             if (product != null)
             {
-                GetBasket().AddItem(product, 1);
+                basket.AddItem(product, 1);
             }
             return RedirectToAction("Index", new { returnUrl });
         }
 
-        public RedirectToRouteResult RemoveFromBasket(int Id, string returnUrl)
+        public RedirectToRouteResult RemoveFromBasket(Basket basket, int Id, string returnUrl)
         {
             Product product = repository.Products
                 .FirstOrDefault(p => p.Id == Id);
             if (product != null)
             {
-                GetBasket().RemoveLine(product);
+                basket.RemoveLine(product);
             }
             return RedirectToAction("Index", new { returnUrl });
         }
 
-        private Basket GetBasket()
-        {
-            Basket basket = (Basket)Session["Basket"];
-            if (basket == null)
-            {
-                basket = new Basket();
-                Session["Basket"] = basket;
-            }
-            return basket;
-        }
     }
 }
