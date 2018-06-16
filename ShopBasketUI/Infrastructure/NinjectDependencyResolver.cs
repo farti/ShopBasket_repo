@@ -1,11 +1,9 @@
-﻿using Moq;
-using Ninject;
+﻿using Ninject;
 using ShopBasketLibrary.Abstract;
-using ShopBasketLibrary.Entities;
+using ShopBasketLibrary.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using System.Linq;
 
 
 
@@ -35,16 +33,9 @@ namespace ShopBasketUI.Infrastructure
 
         private void AddBindings()
         {
-            // librarry of connections and fake bases here
+            // librarry of connections  here
 
-            Mock<IProductRepository> mock = new Mock<IProductRepository>();
-            mock.Setup(m => m.Products).Returns(new List<Product> {
-                new Product { Id = 1, Name = "Sól", Description = "Słona przyprawa.", ProducerId = 1},
-                new Product { Id = 2, Name = "Pieprz", Description = "Pierna przyprawa.", ProducerId = 1},
-                new Product { Id = 3, Name = "Papryka", Description = "Ostra przyprawa.", ProducerId = 2}
-            });
-
-            kernel.Bind<IProductRepository>().ToConstant(mock.Object);
+            kernel.Bind<IProductRepository>().To<EFProductRepository>();
 
 
         }

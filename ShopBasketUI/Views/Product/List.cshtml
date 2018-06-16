@@ -3,16 +3,12 @@
 
 
 @{
-    ViewBag.Title = "Product List";
+    ViewBag.Title = "Produkty";
 }
 
 @foreach (var p in Model)
 {
-    <div>
-        <h3>@p.Name</h3>
-        @p.Description
-        <h4>@p.PriceNetto.ToString("c")</h4>
-    </div>
+    @Html.Partial("ProductSummary", p);
 
 }
 
