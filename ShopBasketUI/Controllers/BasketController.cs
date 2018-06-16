@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using ShopBasketLibrary.Abstract;
 using ShopBasketLibrary.Entities;
-using ShopBasketLibrary.Abstract;
+using ShopBasketUI.Models;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace ShopBasketUI.Controllers
 {
@@ -15,6 +13,15 @@ namespace ShopBasketUI.Controllers
         public BasketController(IProductRepository repo)
         {
             repository = repo;
+        }
+
+        public ViewResult Index(string returnUrl)
+        {
+            return View(new BasketIndexViewModel
+            {
+                Basket = GetBasket(),
+                ReturnUrl = returnUrl
+            });
         }
 
         public RedirectToRouteResult AddToBasket(int Id, string returnUrl)
