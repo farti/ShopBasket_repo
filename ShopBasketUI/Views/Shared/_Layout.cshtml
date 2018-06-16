@@ -7,18 +7,20 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
-    <div class="navbar navbar-inverse" role="navigation">
-        <a class="navbar-brand" href="#">Lista produktów</a>
-    </div>
-    <div class="row panel">
-        <div id="categories" class="col-xs-3">
-            @Html.Action("Menu", "Nav")
+    <div class="container">
+        <div class="navbar navbar-inverse" role="navigation">
+            <a class="navbar-brand" href="#">Lista produktów</a>
+            @Html.Action("Summary", "Basket")
         </div>
-        <div class="col-xs-8">
-            @RenderBody()
+        <div class="row panel">
+            <div id="categories" class="col-xs-3">
+                @Html.Action("Menu", "Nav")
+            </div>
+            <div class="col-xs-8">
+                @RenderBody()
+            </div>
         </div>
     </div>
-
 
 </body>
 </html>

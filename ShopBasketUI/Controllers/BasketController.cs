@@ -47,5 +47,10 @@ namespace ShopBasketUI.Controllers
             return RedirectToAction("Index", new { returnUrl });
         }
 
+        public PartialViewResult Summary(Basket basket)
+        {
+            return PartialView(basket);
+        }
+
     }
 }

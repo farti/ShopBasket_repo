@@ -38,6 +38,7 @@ namespace ShopBasketUI.Infrastructure
             kernel.Bind<IProductRepository>().To<EFProductRepository>();
 
 
+
         }
     }
 }
