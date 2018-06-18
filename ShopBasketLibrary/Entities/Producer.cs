@@ -1,4 +1,6 @@
-﻿namespace ShopBasketLibrary.Entities
+﻿using System.Collections.Generic;
+
+namespace ShopBasketLibrary.Entities
 {
     /// <summary>
     /// Represents producer of the product.
@@ -19,5 +21,11 @@
         /// The unique number of producer`s address
         /// </summary>
         public int addressId { get; set; }
+
+        public List<Product> Products { get; set; }
+
+
     }
+
+
 }

@@ -29,6 +29,7 @@ namespace ShopBasketUI.Controllers
         [HttpPost]
         public ActionResult Edit(Product product)
         {
+
             if (ModelState.IsValid)
             {
                 repository.SaveProduct(product);
@@ -57,6 +58,7 @@ namespace ShopBasketUI.Controllers
             }
             return RedirectToAction("Index");
         }
+
 
     }
 }

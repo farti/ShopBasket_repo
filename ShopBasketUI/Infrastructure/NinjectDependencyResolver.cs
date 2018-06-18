@@ -36,7 +36,7 @@ namespace ShopBasketUI.Infrastructure
             // librarry of connections  here
 
             kernel.Bind<IProductRepository>().To<EFProductRepository>();
-
+            kernel.Bind<IProducerRepository>().To<EFProducerRepository>();
 
 
         }

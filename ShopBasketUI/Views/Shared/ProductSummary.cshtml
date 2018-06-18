@@ -1,15 +1,15 @@
 ﻿@model ShopBasketLibrary.Entities.Product
 
 <div class="well">
-    <h3>
+    <h4>
         <strong>@Model.Name</strong>
         <span class="pull-right label label-primary">@Model.PriceNetto.ToString("c")</span>
-    </h3>
+    </h4>
 
-    @using(Html.BeginForm("AddToBasket", "Basket"))
+    @using (Html.BeginForm("AddToBasket", "Basket"))
     {
         <div class="pull-right">
-            @Html.HiddenFor(x=>x.Id)
+            @Html.HiddenFor(x => x.Id)
             @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
             <input type="submit" class="btn btn-success" value="Dodaj do koszyka" />
 
@@ -17,5 +17,8 @@
 
     }
 
-    <span class="lead">@Model.Description</span>
+    <span class="">@Model.Description</span>
+    <br />
+    <br />
+    <span class="">Producent: @Model.Producer.Name</span>
 </div>

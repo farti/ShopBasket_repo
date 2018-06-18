@@ -26,6 +26,19 @@ namespace ShopBasketLibrary.Entities
             }
         }
 
+        public void RemoveItem(Product product, int quantity)
+        {
+            BasketLine line = lineCollection
+                .Where(p => p.Product.Id == product.Id)
+                .FirstOrDefault();
+
+            if (line.Quantity >0)
+
+            {
+                line.Quantity -= quantity;
+            }
+        }
+
         public void RemoveLine(Product product)
         {
             lineCollection.RemoveAll(l => l.Product.Id == product.Id);

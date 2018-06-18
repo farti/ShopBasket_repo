@@ -1,0 +1,10 @@
+﻿@model ShopBasketUI.Models.ProducerViewModel
+
+@{
+    ViewBag.Title = "Lista Producentów";
+    Layout = null;
+}
+
+<div>
+    @Html.DropDownListFor(model => model.selectedItem, Model.list )
+</div>

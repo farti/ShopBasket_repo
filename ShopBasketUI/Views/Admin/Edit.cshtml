@@ -3,6 +3,9 @@
 @{
     ViewBag.Title = "Administracja: edycja " + @Model.Name;
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    HtmlHelper.ClientValidationEnabled = false;
+    HtmlHelper.UnobtrusiveJavaScriptEnabled = false;
+    
 }
 
 <div class="container">
@@ -19,17 +22,27 @@
                 {
                     if (property.PropertyName != "Id")
                     {
-                        <div class="form-group">
-                            <label>@(property.DisplayName ?? property.PropertyName)</label>
-                            @if (property.PropertyName == "Description") 
+                <div class="form-group">
+                    <label>@(property.DisplayName ?? property.PropertyName)</label>
+                    @if (property.PropertyName == "Description")
+                    {
+                        @Html.TextArea(property.PropertyName, null, new { @class = "form-control", rows = 5 })
+                    }
+
+                    else if (property.PropertyName == "ProducerId")
+                    {
+                        @Model.Producer.Name
+                            // TODO -  dodać dropdnown list z Producer
+                            }
+
+
+                            else
+
                             {
-                                @Html.TextArea(property.PropertyName, null, new { @class = "form-control", rows = 5 })
-                            } else
-                            {
-                                @Html.TextBox(property.PropertyName, null, new { @class = "form-control"})
+                            @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
                             }
                             @Html.ValidationMessage(property.PropertyName)
-                        </div>
+                    </div>
                     }
                 }
             </div>

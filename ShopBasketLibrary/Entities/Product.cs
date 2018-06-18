@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections;
+using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
 namespace ShopBasketLibrary.Entities
@@ -25,6 +26,8 @@ namespace ShopBasketLibrary.Entities
         /// The netto price of the product.
         /// </summary>
         [Display(Name = "Cena")]
+        [DisplayFormat(DataFormatString = "{0:C0}")]
+        [DataType(DataType.Currency)]
         [Required]
         [Range(0.01, double.MaxValue, ErrorMessage = "Proszę podać dodatnią cenę.")]
         public decimal PriceNetto { get; set; }
@@ -42,5 +45,9 @@ namespace ShopBasketLibrary.Entities
         [Required(ErrorMessage = "Proszę wybrać producenta.")]
         [Display(Name = "Producent")]
         public int ProducerId { get; set; }
+
+        public virtual Producer Producer { get; set; }
+        
+
     }
 }

@@ -7,6 +7,7 @@ namespace ShopBasketLibrary.Concrete
     public class EFDbContext : DbContext
     {
         public DbSet<Product> Products { get; set; }
+        public DbSet<Producer> Producers { get; set; }
 
     }
 }

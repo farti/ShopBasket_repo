@@ -36,6 +36,30 @@ namespace ShopBasketUI.Controllers
             return RedirectToAction("Index", new { returnUrl });
         }
 
+        public RedirectToRouteResult AddOneToBasket(Basket basket, int Id, string returnUrl)
+        {
+            Product product = repository.Products
+                .FirstOrDefault(p => p.Id == Id);
+            if (product != null)
+            {
+                basket.AddItem(product, 1);
+            }
+            return RedirectToAction("Index", new { returnUrl });
+        }
+
+        public RedirectToRouteResult RemoveOneFromBasket(Basket basket, int Id, string returnUrl)
+        {
+            Product product = repository.Products
+                .FirstOrDefault(p => p.Id == Id);
+            if (product != null )
+            {
+                basket.RemoveItem(product, 1);
+            }
+            return RedirectToAction("Index", new { returnUrl });
+        }
+
+
+
         public RedirectToRouteResult RemoveFromBasket(Basket basket, int Id, string returnUrl)
         {
             Product product = repository.Products
@@ -47,10 +71,14 @@ namespace ShopBasketUI.Controllers
             return RedirectToAction("Index", new { returnUrl });
         }
 
+
+
         public PartialViewResult Summary(Basket basket)
         {
             return PartialView(basket);
         }
+
+
 
     }
 }

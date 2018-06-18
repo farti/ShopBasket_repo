@@ -11,8 +11,8 @@
 <table id="basketTable" class="table">
     <thead>
         <tr>
-            <th>Ilość</th>
-            <th>Product</th>
+            <th class="text-center">Ilość</th>
+            <th class="text-center">Product</th>
             <th class="text-right">Cena netto</th>
             <th class="text-right">Cena za wybraną ilość</th>
         </tr>
@@ -20,20 +20,39 @@
     <tbody>
         @foreach(var line in Model.Basket.Lines)
         {
-            <tr>
-                <td class="text-center">@line.Quantity</td>
-                <td class="text-left">@line.Product.Name</td>
-                <td class="text-right">@line.Product.PriceNetto.ToString("c")</td>
-                <td class="text-right">@((line.Quantity * line.Product.PriceNetto).ToString("c"))</td>
-                <td>
-                    @using (Html.BeginForm("RemoveFromBasket", "Basket"))
-                    {
-                        @Html.Hidden("Id", line.Product.Id)
-                        @Html.HiddenFor(x =>x.ReturnUrl)
+
+        <tr>
+            <td class="text-center">@line.Quantity </td>
+            <td class="text-left">@line.Product.Name</td>
+            <td class="text-right">@line.Product.PriceNetto.ToString("c")</td>
+            <td class="text-right">@((line.Quantity * line.Product.PriceNetto).ToString("c"))</td>
+            <td>
+                @using (Html.BeginForm("AddOneToBasket", "Basket"))
+                {
+                    @Html.Hidden("Id", line.Product.Id)
+                    @Html.HiddenFor(x => x.ReturnUrl)
+                    <input type="submit" class="btn btn-sm btn-default " value="+" />
+
+                }
+            </td>
+            <td>
+                @using (Html.BeginForm("RemoveOneFromBasket", "Basket"))
+                {
+                    @Html.Hidden("Id", line.Product.Id)
+                    @Html.HiddenFor(x => x.ReturnUrl)
+                    <input type="submit" class="btn btn-sm btn-default" value="-" />
+
+                }
+            </td>
+            <td>
+                @using (Html.BeginForm("RemoveFromBasket", "Basket"))
+                {
+                    @Html.Hidden("Id", line.Product.Id)
+                    @Html.HiddenFor(x => x.ReturnUrl)
                     <input type="submit" class="btn btn-sm btn-warning" value="Usuń" />
-                    }
-                </td>
-            </tr>
+                }
+            </td>
+        </tr>
         }
     </tbody>
     <tfoot>

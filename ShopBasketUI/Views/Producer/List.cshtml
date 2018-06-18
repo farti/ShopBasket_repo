@@ -1,0 +1,13 @@
+﻿@using ShopBasketLibrary.Entities
+@model IEnumerable<Producer>
+
+
+@{
+    ViewBag.Title = "Producenci";
+}
+
+@foreach (var p in Model.OrderBy(s => s.Name))
+{
+    @Html.Partial("ProducerSummary", p);
+
+}
